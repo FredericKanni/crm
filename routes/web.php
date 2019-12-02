@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/api/clients/','ClientController@all');
+
+Route::post('/api/clients/','ClientController@all');

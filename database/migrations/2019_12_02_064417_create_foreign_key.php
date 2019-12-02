@@ -20,6 +20,14 @@ class CreateForeignKey extends Migration
         });
 
 
+
+        //enlever car double foreign key = pas possible d ajouter ds la bdd
+        // Schema::table('adresses', function (Blueprint $table) {
+        //     //foreignkey pour le pour l adresse 
+        //     $table->unsignedBigInteger('id_client');
+        //     $table->foreign('id_client')->references('id')->on('clients');
+        // });
+
         Schema::table('contacts', function (Blueprint $table) {
             //foreignkey pour le pour l adresse 
             $table->unsignedBigInteger('id_client');
@@ -53,6 +61,19 @@ class CreateForeignKey extends Migration
             Schema::enableForeignKeyConstraints();
         });
 
+
+
+        //supprimer car plus besion 
+        // Schema::table('adresses', function (Blueprint $table) {
+        //     //disable contrainte
+        //     Schema::disableForeignKeyConstraints();
+        //     // drop foreign keys
+        //     $table->dropForeign('adresses_id_client_foreign');
+        //     //drop le champ
+        //     $table->dropColumn('id_client');
+        //     //enable contrainte
+        //     Schema::enableForeignKeyConstraints();
+        // });
 
 
         Schema::table('contacts', function (Blueprint $table) {
