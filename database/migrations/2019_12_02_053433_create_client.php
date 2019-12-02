@@ -6,31 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateClient extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('clients', function(Blueprint $table) {
-			$table->increments('id');
-			$table->timestamps();
-			$table->string('nom', 255);
-            $table->string('id_adresse', 255);
-              //foreignkey pour le pour l adresse 
-              $table->unsignedBigInteger('adresse_id');
-              $table->foreign('adresse_id')->references('id')->on('adresses');
-		});
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('clients', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('nom', 255);
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('client');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+
+    //efface la table contacts
+    Schema::drop('clients');
+  }
 }

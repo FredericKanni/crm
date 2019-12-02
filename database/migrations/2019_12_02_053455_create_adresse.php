@@ -14,14 +14,14 @@ class CreateAdresse extends Migration
     public function up()
     {
         Schema::create('adresses', function(Blueprint $table) {
-			$table->increments('id');
+			$table->bigIncrements('id');
 			$table->timestamps();
 			$table->string('adresse', 255);
 			$table->bigInteger('code_postal');
             $table->string('ville', 255);
             //foreignkey pour le client
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+          //  $table->unsignedBigInteger('client_id');
+           // $table->foreign('client_id')->references('id')->on('clients');
 		});
     }
 
@@ -32,6 +32,12 @@ class CreateAdresse extends Migration
      */
     public function down()
     {
+      
+        //desactiver les contrainte  de foreign key 
+    //    Schema::disableForeignKeyConstraints();
+        //efface la table contacts
         Schema::drop('adresses');
+        //reactiver les contrainte  de foreign key 
+    //    Schema::enableForeignKeyConstraints();
     }
 }

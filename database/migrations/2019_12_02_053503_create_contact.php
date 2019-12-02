@@ -6,34 +6,33 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateContact extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('contacts', function(Blueprint $table) {
-			$table->increments('id');
-			$table->timestamps();
-			$table->string('nom', 255);
-			$table->string('prenom', 255);
-			$table->bigInteger('tel');
-			$table->string('email', 255);
-            $table->string('poste', 255);
-            //foreignkey pour le client
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
-		});
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('contacts', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->timestamps();
+      $table->string('nom', 255);
+      $table->string('prenom', 255);
+      $table->bigInteger('tel');
+      $table->string('email', 255);
+      $table->string('poste', 255);
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::drop('contacts');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::drop('contacts');
+
+
+  }
 }
