@@ -10,7 +10,8 @@ class Client extends Model
 
     //ici pas la peine de mettre id_adresse osef 
     // en faite nan parce plus tard ds la l ajout en bdd il faut remplir le id_adresse
-    protected $fillable = ['id', 'nom','id_adresse'];
+    protected $fillable = ['id', 'nom','created_at','updated_at'];
+    public $timestamps = true;
 
     public function adresse()
     {

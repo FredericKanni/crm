@@ -9,6 +9,7 @@ use App\Http\Resources\AdresseRessource;
 use App\Http\Resources\ClientRessource;
 use App\Http\Resources\ContactRessource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
@@ -57,56 +58,36 @@ class ClientController extends Controller
 
         ], ['required' => 'l\'attribut :attribute est requis'])->validate();
 
-
-
-
-        //ajout en bdd
-        // $insertionBDD = Adresse::create(
-        //     $array
-        // )->id;
-        // $array['id'] = $insertionBDD;
-
-
-        //mon tableau de donne pour rajouter ds la dbb ds adrsse
+        // //mon tableau de donne pour rajouter ds la dbb ds adrsse
         $adr = [
             'adresse' => $array['adresse'],
             'code_postal' => $array['code_postal'],
             'ville' => $array['ville'],
 
         ];
-
-        //ajout en bdd adresses
-        $id_de_l_adresse = Adresse::create($adr)->id;
-        $adr['id'] = $id_de_l_adresse;
-
-
-
-
-        //mon tableau de donne pour rajouter ds la dbb ds client
+        // //mon tableau de donne pour rajouter ds la dbb ds client
         $cli = [
-            'nom' =>  $array['nom'], 
-            //ici on veut recuperer l id de l adresse  
-            'id_adresse' =>  1,   
+            'nom' =>  $array['nom'],
+            
+
+    
         ];
-
-
-         //ajout en bdd adresses
-         $id_du_client = Client::create($cli)->id;
-            $cli ['id'] = $id_du_client;
-
-        //mon tableau de donne pour rajouter ds la dbb ds contact 
+        // //mon tableau de donne pour rajouter ds la dbb ds contact 
         $con = [
             'nom' =>  $array['nometp'],
             'prenom' =>  $array['prenom'],
             'tel' =>  $array['tel'],
-            'mail' =>  $array['mail'],
+            'email' =>  $array['mail'],
             'poste' =>  $array['poste'],
 
         ];
 
+        DB::transaction(function () use ($adr, $cli, $con) {
 
-
-
+            $adresse = Adresse::create($adr);
+            $client = $adresse->client()->create($cli);
+            $contact = $client->contacts()->create( $con);
+        });
 
         return $cli;
         //  return $array['nom'];
