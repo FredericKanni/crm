@@ -8,8 +8,9 @@ class Client extends Model
 {
     protected $table = 'clients';
 
-    //ici pas la peine de mettre id-adresse osef 
-    protected $fillable = ['id', 'nom'];
+    //ici pas la peine de mettre id_adresse osef 
+    // en faite nan parce plus tard ds la l ajout en bdd il faut remplir le id_adresse
+    protected $fillable = ['id', 'nom','id_adresse'];
 
     public function adresse()
     {

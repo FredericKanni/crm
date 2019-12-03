@@ -14,6 +14,6 @@ class Adresse extends Model
 
     public function client()
     {
-        return $this->belongsTo('App\Client', 'id_client');
+        return $this->hasOne('App\Client', 'id_client');
     }
 }
