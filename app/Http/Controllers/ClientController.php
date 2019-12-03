@@ -26,6 +26,7 @@ class ClientController extends Controller
     function all()
     {
         $clients = Client::with(['adresse','contacts'])->get();
+        //ca va retourner un array 
        return ClientRessource::collection($clients);
 
      //  $clients = Client::with(['adresse','contacts'])->get();

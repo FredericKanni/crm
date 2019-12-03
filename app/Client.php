@@ -8,11 +8,17 @@ class Client extends Model
 {
     protected $table = 'clients';
 
-    protected $fillable = ['id', 'nom', 'id_adresse'];
+    //ici pas la peine de mettre id-adresse osef 
+    protected $fillable = ['id', 'nom'];
 
     public function adresse()
     {
-        return $this->hasOne('App\Adresse', 'adresse');
+
+
+        //c est la meme chose 
+        // return $this->belongsTo('App\Adresse', 'adresse');
+        return $this->belongsTo(Adresse::class, 'id_adresse');
+        //id_adresse  c est la cle etrangere
     }
 
 
@@ -21,7 +27,7 @@ class Client extends Model
     //avoir pas sur 
     public function contacts()
     {
-        return $this->hasMany('App\Contact','id_client');
+        return $this->hasMany(Contact::class,'id_client');
     }
 
    
