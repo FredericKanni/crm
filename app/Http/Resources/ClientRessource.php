@@ -19,6 +19,7 @@ class ClientRessource extends JsonResource
         //on fait appelle a AdresseRessource this->adresse  ça renvoie 1 0 2 etc
         //whenloaded c est qd on charge l adresse alors fait ça sinon renvoie null 
         //'adresse' ici appelle la fct adresse qui et ds le model Client
+        // $this->whenLoaded('adresse')   remplace   $this->'adresse'
         $adresse = new AdresseRessource($this->whenLoaded('adresse'));
 
         //on utlisise collection parce qu il y a plusieurs 

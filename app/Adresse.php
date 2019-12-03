@@ -9,7 +9,7 @@ class Adresse extends Model
     protected $table = 'adresses';
 
     protected $fillable = ['id', 'adresse', 'code_postal','ville'
-  ,'id_client'
+  ,'id_client' //mais ds ma bdd il y a pas de id client  car la cle etrangere est dans le Model client  car si double cle impossible d ajouter 
     ];
 
     public function client()
