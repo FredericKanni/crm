@@ -1,4 +1,9 @@
-{{ csrf_token() }}
+
+<div id="tuto">
+<p v-text="texte"></p>
 
 
-<script src="/js/vue.js"></script>
+</div>
+
+
+<script src="/js/app.js"></script>
