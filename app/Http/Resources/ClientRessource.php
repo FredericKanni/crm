@@ -32,9 +32,9 @@ class ClientRessource extends JsonResource
             'nom' => $this->nom,
             // 'id_adresse' => $this->id_adresse,
             //return une adresse  appelle la variable adresse
-            //  'adresse' => $adresse,
+             'adresse' => $adresse,
             // dans le deuxieme adresse il a y une cle qui s appelle adresse comme id par ex pour le recup on use ->adresse ou ->id 
-            'adresse' => $adresse->adresse,
+            // 'adresse' => $adresse->adresse,
             'contacts' => $contact,
         ];
 
