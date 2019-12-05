@@ -11,7 +11,7 @@
 
 
 import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
+import Vuetify from 'vuetify';
 
 //@/js ->  ./
 
@@ -28,6 +28,7 @@ Vue.use(Vuetify);
 
 const app = new Vue({
     el: '#app',
+    vuetify:new Vuetify({}),
     router: Routes,
     components: { layout },
 

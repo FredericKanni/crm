@@ -30,10 +30,6 @@ class ClientController extends Controller
         $clients = Client::with(['adresse', 'contacts'])->get();
         //ca va retourner un array 
         return ClientRessource::collection($clients);
-
-        //  $clients = Client::with(['adresse','contacts'])->get();
-        //   return ClientRessource::collection($clients);
-
     }
 
 
@@ -47,8 +43,8 @@ class ClientController extends Controller
             'adresse' => 'required',
             'code_postal' => 'required',
             'ville' => 'required',
-            'nom' => 'required',
 
+            'nom' => 'required',
 
             'nometp' => 'required',
             'prenom' => 'required',
@@ -68,9 +64,9 @@ class ClientController extends Controller
         // //mon tableau de donne pour rajouter ds la dbb ds client
         $cli = [
             'nom' =>  $array['nom'],
-            
 
-    
+
+
         ];
         // //mon tableau de donne pour rajouter ds la dbb ds contact 
         $con = [
@@ -82,15 +78,20 @@ class ClientController extends Controller
 
         ];
 
-        DB::transaction(function () use ($adr, $cli, $con) {
+        $clientRetour = [];
+        DB::transaction(function () use ($adr, $cli, $con, &$clientRetour) {
 
             $adresse = Adresse::create($adr);
-            $client = $adresse->client()->create($cli);
-            $contact = $client->contacts()->create( $con);
+            $clientRetour = $adresse->client()->create($cli);
+            $contact = $clientRetour->contacts()->create($con);
         });
 
-        return $cli;
-        //  return $array['nom'];
-        //  return json_encode($array);
+
+        $client = Client::with([
+            'adresse', 'contacts'
+        ])->where('id', $clientRetour->id)->first();
+
+
+        return new ClientRessource($client);
     }
 }

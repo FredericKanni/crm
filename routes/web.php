@@ -25,8 +25,6 @@ Route::get('/accueil', function () {
     return view('accueil');
 });
 Route::get('/api/clients/','ClientController@all');
-//Route::post('/api/clients/','ClientController@all');
-//Route::post('/api/clients/','ClientController@create');
 Route::post('/api/clients/','ClientController@create');
 
 

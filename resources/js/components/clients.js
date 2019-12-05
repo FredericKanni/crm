@@ -1,45 +1,47 @@
-console.log('totor');
-
 import axios from 'axios';
+import Formulaire from './Formulaire.vue';
 
 
 export default {
- 
-    data () {
+
+
+    components: {
+        Formulaire
+    },
+
+    data() {
         return {
-            clients: []
+            clients: [],
+            variableParent: 'TOTO'
         }
     },
-   
+
     methods: {
-        getDatas(){
-        
+        getDatas() {
             this.clients = [];
             axios.get('/api/clients')
 
-                .then(({data}) => {
-                 //   console.log(data);
-                     //console.log(data.data);
+                .then(({ data }) => {
+                    //   console.log(data);
+                    //console.log(data.data);
 
+                  //  console.log(data);
                     data.data.forEach(_data => {
-                       // console.log(_data);
+                      
                         this.clients.push(_data);
+                       // console.log(_data);
                     })
-                    console.log(this.clients);
-                    
+                    console.log(clients);
                 })
-
-
-                
-                .catch(error=> {
-                    console.log(error);
-                });
+        },
+        addClient(client) {
+           // console.log("client :");
+            this.clients.push(client);
+         //   console.log(clients);
         }
     },
-    created(){
+    created() {
         this.getDatas();
     },
 
-    
-    
 }
